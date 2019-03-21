@@ -13,11 +13,12 @@
       <div class="card-header text-center">Request a callback!</div>
       <div class="card-body">
         <div>
-          <%= bootstrap_form_for :contact_details, url: root_path do |f| %>
+          <%= bootstrap_form_for :contact_details, url: callback_path do |f| %>
             <%= f.text_field :name %>
             <%= f.text_field :business_name %>
             <%= f.text_field :email %>
             <%= f.text_field :phone %>
+            <%= f.submit "Submit" %>
           <% end %>
         </div>
       </div>
