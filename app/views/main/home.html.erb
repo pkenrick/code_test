@@ -1,1 +1,27 @@
-home
+<div class="row p-4">
+  <div class="col">
+    <div class="text-center">
+      Basic information about the company.
+    </div>
+  </div>
+</div>
+
+<div class="row p-4">
+  <div class="col"></div>
+  <div class="col-lg-4 col-sm-6 col-xs-12">
+    <div class="card">
+      <div class="card-header text-center">Request a callback!</div>
+      <div class="card-body">
+        <div>
+          <%= bootstrap_form_for :contact_details, url: root_path do |f| %>
+            <%= f.text_field :name %>
+            <%= f.text_field :business_name %>
+            <%= f.text_field :email %>
+            <%= f.text_field :phone %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
