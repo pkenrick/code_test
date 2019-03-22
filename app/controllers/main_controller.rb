@@ -7,7 +7,11 @@ class MainController < ApplicationController
       flash[:success] = "Thanks!  A member of our team will call you back shortly."
       redirect_to root_path
     else
-      flash[:danger] = "Sorry, the following errors occurred: <br/><br/>#{create_error_list(response[:errors])}".html_safe
+      flash.now[:danger] = "Sorry, the following errors occurred: <br/><br/>#{create_error_list(response[:errors])}".html_safe
+      @name = params[:name]
+      @business_name = params[:business_name]
+      @email = params[:email]
+      @telephone_number = params[:telephone_number]
       render :home
     end
   end

@@ -35,3 +35,13 @@ Check `.env.example`
 - LEAD_API_PACCNAME="MicDevtest"
 - LEAD_API_PPARTNER="MicDevtest"
 - LEAD_API_ACCESS_TOKEN=provide_by_maket_it_cheaper
+
+## Notes from the Author
+
+* I built this application following a TDD process to produce controller and service specs.  I would like to also add features specs, but time constraints have prevented this.
+
+* After initially including the code to make the API call in the main controller's callback action, I decided to move this logic out of the controller in an effort to keep the controller 'skinny'.  This code is now included its own service, and leaves the controller much more readable.
+
+* When rendering an error, the forms values are returned by the controller's callback action.  I consider using a Customer model might make this more simple, but have not been able to do this due to time constraints.
+
+* I have utilised the Bootstrap gem (already included in the project) for very basic styling of the home page. Unfortunately, I have no experience with front end frameworks, but am hoping to learn more about these in my future role.

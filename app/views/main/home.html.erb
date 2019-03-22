@@ -1,7 +1,15 @@
-<div class="row p-4">
+<div class="row m-4">
   <div class="col">
     <div class="text-center">
-      Basic information about the company.
+      Welcome to Widgets Are Us.  The one stop shop for all your widgeting needs.
+    </div>
+  </div>
+</div>
+
+<div class="row m-4">
+  <div class="col">
+    <div class="text-center">
+      We'd love to hear from you, but our lines are rather busy.  However, please try our new call back service.
     </div>
   </div>
 </div>
@@ -18,10 +26,10 @@
         <% end %>
 
         <%= bootstrap_form_tag url: callback_path do |f| %>
-          <%= f.text_field :name, value: "Test Name" %>
-          <%= f.text_field :business_name, value: "Test Business Name" %>
-          <%= f.text_field :email, value: "test@example.com" %>
-          <%= f.text_field :telephone_number, value: "01234567891" %>
+          <%= f.text_field :name, value: @name %>
+          <%= f.text_field :business_name, value: @business_name %>
+          <%= f.text_field :email, value: @email %>
+          <%= f.text_field :telephone_number, value: @telephone_number %>
           <%= f.submit "Submit" %>
         <% end %>
 
