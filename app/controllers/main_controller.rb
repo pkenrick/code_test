@@ -1,21 +1,15 @@
 class MainController < ApplicationController
 
   def callback
-    uri = URI("#{ENV['LEAD_API_URI']}/api/v1/create")
-    response = Net::HTTP.post_form(uri, callback_params)
+    response = EnqueueCallbackService.call(callback_params)
 
-    response_body = JSON.parse(response.body)
-    if response_body['errors'].any?
-      flash.now[:danger] = craft_error_message(response_body).html_safe
-      render :home
-    else
+    if response[:result] == 'success'
       flash[:success] = "Thanks!  A member of our team will call you back shortly."
       redirect_to root_path
+    else
+      flash[:danger] = "Sorry, the following errors occurred: <br/><br/>#{create_error_list(response[:errors])}".html_safe
+      render :home
     end
-
-  rescue
-    flash[:danger] = "Sorry, there was a problem saving your details.  Please try again later."
-    redirect_to root_path
   end
 
   private
@@ -33,11 +27,11 @@ class MainController < ApplicationController
     }
   end
 
-  def craft_error_message(response_body)
-      error_message = "Sorry, your information contained the following errors:<br/><br/><ul>"
-      response_body['errors'].each do |error|
-        error_message += "<li>#{error}</li>"
-      end
-      error_message += "</ul>"
+  def create_error_list(errors)
+    error_message = "<ul>"
+    errors.each do |error|
+      error_message += "<li>#{error}</li>"
+    end
+    error_message += "</ul>"
   end
 end
