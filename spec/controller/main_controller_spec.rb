@@ -21,7 +21,6 @@ RSpec.describe MainController, type: :controller do
         .and_call_original
 
       post :callback, params: {name: "Test Name", business_name: "Test Business Name", email: "test@example.com", telephone_number: "01234567891"}
-
     end
   end
 

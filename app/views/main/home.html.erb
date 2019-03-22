@@ -12,15 +12,19 @@
     <div class="card">
       <div class="card-header text-center">Request a callback!</div>
       <div class="card-body">
-        <div>
-          <%= bootstrap_form_tag url: callback_path do |f| %>
-            <%= f.text_field :name, value: "Test Name" %>
-            <%= f.text_field :business_name, value: "Test Business Name" %>
-            <%= f.text_field :email, value: "test@example.com" %>
-            <%= f.text_field :telephone_number, value: "01234567891" %>
-            <%= f.submit "Submit" %>
-          <% end %>
-        </div>
+
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+
+        <%= bootstrap_form_tag url: callback_path do |f| %>
+          <%= f.text_field :name, value: "Test Name" %>
+          <%= f.text_field :business_name, value: "Test Business Name" %>
+          <%= f.text_field :email, value: "test@example.com" %>
+          <%= f.text_field :telephone_number, value: "01234567891" %>
+          <%= f.submit "Submit" %>
+        <% end %>
+
       </div>
     </div>
   </div>
