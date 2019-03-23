@@ -17,8 +17,8 @@ class EnqueueCallbackService
     else
       return []
     end
-  rescue
-    return ['Callback service not current available. Please try again later.']
+  # rescue
+  #   return ['Callback service not current available. Please try again later.']
   end
 
   def non_customer_params
