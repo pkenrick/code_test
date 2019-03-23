@@ -1,34 +1,26 @@
 class MainController < ApplicationController
 
-  def callback
-    response = EnqueueCallbackService.call(callback_params)
+  def home
+    @customer = Customer.new
+  end
 
-    if response[:result] == 'success'
+  def callback
+    errors = EnqueueCallbackService.call(customer_params)
+
+    if errors.empty?
       flash[:success] = "Thanks!  A member of our team will call you back shortly."
       redirect_to root_path
     else
-      flash.now[:danger] = "Sorry, the following errors occurred: <br/><br/>#{create_error_list(response[:errors])}".html_safe
-      @name = params[:name]
-      @business_name = params[:business_name]
-      @email = params[:email]
-      @telephone_number = params[:telephone_number]
+      flash.now[:danger] = "Sorry, the following errors occurred: <br/><br/>#{create_error_list(errors)}".html_safe
+      @customer = Customer.new(customer_params)
       render :home
     end
   end
 
   private
 
-  def callback_params
-    {
-      access_token: ENV['SECRET_KEY_BASE'],
-      pGUID: ENV['LEAD_API_PGUID'],
-      pAccName: ENV['LEAD_API_PACCNAME'],
-      pPartner: ENV['LEAD_API_PPARTNER'],
-      name: params[:name],
-      business_name: params[:business_name],
-      email: params[:email],
-      telephone_number: params[:telephone_number]
-    }
+  def customer_params
+    params.require(:customer).permit(:name, :business_name, :email, :telephone_number)
   end
 
   def create_error_list(errors)

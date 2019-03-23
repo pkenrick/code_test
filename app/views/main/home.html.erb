@@ -25,11 +25,11 @@
           <div class="alert alert-<%= key %>"><%= value %></div>
         <% end %>
 
-        <%= bootstrap_form_tag url: callback_path do |f| %>
-          <%= f.text_field :name, value: @name %>
-          <%= f.text_field :business_name, value: @business_name %>
-          <%= f.text_field :email, value: @email %>
-          <%= f.text_field :telephone_number, value: @telephone_number %>
+        <%= bootstrap_form_for @customer, url: callback_path do |f| %>
+          <%= f.text_field :name, value: @customer.name %>
+          <%= f.text_field :business_name, value: @customer.business_name %>
+          <%= f.text_field :email, value: @customer.email %>
+          <%= f.text_field :telephone_number, value: @customer.telephone_number %>
           <%= f.submit "Submit" %>
         <% end %>
 

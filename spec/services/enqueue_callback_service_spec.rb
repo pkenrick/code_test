@@ -15,16 +15,16 @@ RSpec.describe EnqueueCallbackService, type: :service do
       EnqueueCallbackService.call(valid_params)
     end
 
-    describe 'when no errors are received from API' do
-      it 'should return a hash containing a failed result and any errors' do
-        stub_request(:post, "http://mic-leads.dev-test.makeiteasy.com/api/v1/create").to_return(status: 200, body: '{"message":"This is a stubbed response", "errors":[]}', headers: {})
-        expect(EnqueueCallbackService.call(valid_params)).to eq({ result: 'success', errors: []})
+    describe 'when errors received from API' do
+      it 'should return a hash containing a successful result and no errors' do
+        expect(EnqueueCallbackService.call(valid_params)).to eq(['Sample error'])
       end
     end
 
-    describe 'when errors received from API' do
-      it 'should return a hash containing a successful result and no errors' do
-        expect(EnqueueCallbackService.call(valid_params)).to eq({ result: 'failure', errors: ['Sample error']})
+    describe 'when no errors are received from API' do
+      it 'should return a hash containing a failed result and any errors' do
+        stub_request(:post, "http://mic-leads.dev-test.makeiteasy.com/api/v1/create").to_return(status: 200, body: '{"message":"This is a stubbed response", "errors":[]}', headers: {})
+        expect(EnqueueCallbackService.call(valid_params)).to eq([])
       end
     end
   end
