@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   root to: 'main#home'
-  post '/callback' => 'main#callback'
+  match '/callback' => 'main#callback', via: [:get, :post]
 end

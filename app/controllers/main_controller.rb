@@ -5,6 +5,8 @@ class MainController < ApplicationController
   end
 
   def callback
+    redirect_to root_path and return if request.get?
+
     errors = EnqueueCallbackService.call(customer_params)
 
     if errors.empty?
