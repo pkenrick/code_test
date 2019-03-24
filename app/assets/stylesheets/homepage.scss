@@ -1,0 +1,31 @@
+.jumbotron {
+  background-color: #FF5733;
+  color: white;
+}
+
+body {
+  background: image-url('factory_smaller');
+  background-size: 100% 100%;
+	background-repeat: no-repeat;
+  background-color: rgba(255,255,255,0.6);
+  background-blend-mode: lighten;
+}
+
+.card-header {
+  color: #FF5733;
+}
+
+.btn-brand {
+  background-color: white;
+  border-color: #FF5733;
+  color: #FF5733;
+}
+
+.btn-brand:hover,
+.btn-brand:active,
+.btn-brand:visited,
+.btn-brand:focus {
+    background-color: #FF5733;
+    border-color: #FF5733;
+    color: white;
+}

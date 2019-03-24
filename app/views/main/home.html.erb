@@ -1,40 +1,47 @@
-<div class="row m-4">
-  <div class="col">
-    <div class="text-center">
-      Welcome to Widgets Are Us.  The one stop shop for all your widgeting needs.
+<body>
+  <div class="jumbotron">
+    <div class="container text-center text-white">
+      <h1>Welcome to Widgets Are Us</h1>
+      <div>The one stop shop for all you widgeting needs.</div>
     </div>
   </div>
-</div>
 
-<div class="row m-4">
-  <div class="col">
-    <div class="text-center">
-      We'd love to hear from you, but our lines are rather busy.  However, please try our new call back service.
+  <div class="row m-4">
+    <div class="col">
+      <h5 class="text-center">
+        We'd love to hear from you, but our lines are rather busy.  However, please try our new call back service.
+      </h5>
     </div>
   </div>
-</div>
 
-<div class="row p-4">
-  <div class="col"></div>
-  <div class="col-lg-4 col-sm-6 col-xs-12">
-    <div class="card">
-      <div class="card-header text-center">Request a callback!</div>
-      <div class="card-body">
+  <div class="row p-4">
+    <div class="col"></div>
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-header text-center">Request a callback!</div>
+        <div class="card-body">
 
-        <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><%= value %></div>
-        <% end %>
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
 
-        <%= bootstrap_form_for @customer, url: callback_path do |f| %>
-          <%= f.text_field :name, value: @customer.name %>
-          <%= f.text_field :business_name, value: @customer.business_name %>
-          <%= f.text_field :email, value: @customer.email %>
-          <%= f.text_field :telephone_number, value: @customer.telephone_number %>
-          <%= f.submit "Submit" %>
-        <% end %>
+          <%= bootstrap_form_for @customer, url: callback_path do |f| %>
+            <%= f.text_field :name, value: @customer.name %>
+            <%= f.text_field :business_name, value: @customer.business_name %>
+            <%= f.text_field :email, value: @customer.email %>
+            <%= f.text_field :telephone_number, value: @customer.telephone_number %>
+            <div class="row">
+              <div class="col"></div>
+              <div class="col">
+                <%= f.submit "Submit", class: "btn btn-brand" %>
+              </div>
+              <div class="col"></div>
+            </div>
+          <% end %>
 
+        </div>
       </div>
     </div>
+    <div class="col"></div>
   </div>
-  <div class="col"></div>
-</div>
+</body>

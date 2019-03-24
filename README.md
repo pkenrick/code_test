@@ -38,10 +38,13 @@ Check `.env.example`
 
 ## Notes from the Author
 
-* I built this application following a TDD process to produce controller and service specs.  I would like to also add features specs, but time constraints have prevented this.
+* I built this application following a TDD process to produce controller and service specs.  I have also added some simple feature specs.
 
-* After initially including the code to make the API call in the main controller's callback action, I decided to move this logic out of the controller in an effort to keep the controller 'skinny'.  This code is now included its own service, and leaves the controller much more readable.
+* I have attempted to keep my controller skinny by doing two things:
 
-* When rendering an error, the forms values are returned by the controller's callback action.  I consider using a Customer model might make this more simple, but have not been able to do this due to time constraints.
+  1. moving the API-calling code out to its own service
+  2. creating a customer model keep track of the user's inputs (no database required so I used ActiveModel rather than ActiveRecord)
 
-* I have utilised the Bootstrap gem (already included in the project) for very basic styling of the home page. Unfortunately, I have no experience with front end frameworks, but am hoping to learn more about these in my future role.
+* With the inclusion of the customer model, it would have been easy to include model validations, however the API validates the user details thoroughly and returns very specific error messages.  I decided it would be best to simply rely on these.  It means that no changes to the app are required if the API's requirements change (for example, if it's decided that customer name can be first name only).
+
+* I have utilised the Bootstrap gem (already included in the project) for basic styling of the home page, included in the scss file `homepage.scss`.
